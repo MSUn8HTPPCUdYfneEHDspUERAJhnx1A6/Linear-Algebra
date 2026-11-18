@@ -1,0 +1,92 @@
+# 矩阵(matrix)
+## 定义
+由 **n$\times$m**个数组成的一个 $n$ 行 $m$ 列的数表，就是矩阵  
+一个 $n$ 行 $m$ 列的矩阵：$$\begin{bmatrix}a_{1,1}&a_{1,2}&...&a_{1,m}\\a_{2,1}&a_{2,2}&...&a_{2,m}\\...&...&...&...\\a_{n,1}&a_{n,2}&...&a_{n,m}\end{bmatrix}$$
+### 与行列式的关系
+矩阵本质是一个数表，行列式本质是一个数，矩阵行数和列数可以不同，而行列式行数和列数必须相同  
+特别地：当矩阵的 $n=m$ 时，它为方阵，方阵有行列式，非方阵无行列式
+#### 方阵的行列式的性质
+$|A^{T}|=A$,$|\lambda A|=\lambda^{n}A$  
+$\Pi _{i=1}^{n}|A_i|=|A_1...A_n|$
+### 同型矩阵
+若 $A,B$ 均为 $n$ 行 $m$ 列矩阵，则同型
+### 相等矩阵  
+若两同型矩阵元素对应相等，即 $\forall 1\le i\le n,1\le j\le m,a_{i,j}=b_{i,j}$ ,则称 $ A,B $ 相等
+### 特别地
+若矩阵乘任何可乘矩阵均为 0 且任何可乘矩阵乘这个矩阵均为 0，则为零矩阵  
+若矩阵乘任何可乘矩阵均为任何可乘矩阵本身 且 任何可乘矩阵乘这个矩阵均为任何可乘矩阵本身，则为单位矩阵  
+若主对角线之外的元素均为 0，且它为方阵,则为对角矩阵  
+性质：对角矩阵 $A^N=\begin{bmatrix}a_{1,1}^N&0&...&0\\0&a_{2,2}^N&...&0\\...&...&...&...\\0&0&...&a_{n,n}^N\end{bmatrix}(N\geq 1)$  
+若主对角线有一侧的元素均为 0，则为三角矩阵  
+若元素关于主对角线对称，则为对称矩阵  
+只有一行的矩阵为行向量，只有一列的矩阵为列向量
+### 伴随矩阵
+伴随矩阵$A^{*}=\begin{bmatrix}A_{1,1}&A_{1,2}&...&A_{1,n}\\A_{2,1}&A_{2,2}&...&A_{2,n}\\...&...&...&...\\A_{n,1}&A_{n,2}&...&A_{n,n}\end{bmatrix}^{T}=\begin{bmatrix}A_{1,1}&A_{2,1}&...&A_{n,1}\\A_{1,2}&A_{2,2}&...&A_{n,2}\\...&...&...&...\\A_{1,n}&A_{2,n}&...&A_{n,n}\end{bmatrix}$，其中 $A_{i,j}$ 表示矩阵 A 的代数余子式  
+引理：记D为行列式的值 $D'=\sum_{ k=1 }^{n}a_{i,k}A_{j,k}=\begin{cases}D,i=j\\0,i\neq j\end{cases}$在线性代数1中已证  
+要证：$AA^{*}=A^{*}A=|A|\times单位矩阵E$  
+证明：$\begin{bmatrix}a_{1,1}&a_{2,1}&...&a_{n,1}\\a_{1,2}&a_{2,2}&...&a_{n,2}\\...&...&...&...\\a_{1,n}&a_{2,n}&...&a_{n,n}\end{bmatrix}\begin{bmatrix}A_{1,1}&A_{2,1}&...&A_{n,1}\\A_{1,2}&A_{2,2}&...&A_{n,2}\\...&...&...&...\\A_{1,n}&A_{2,n}&...&A_{n,n}\end{bmatrix}=\begin{bmatrix}|A|&0&...&0\\0&|A|&...&0\\...&...&...&...\\0&0&...&|A|\end{bmatrix}=\begin{bmatrix}A_{1,1}&A_{2,1}&...&A_{n,1}\\A_{1,2}&A_{2,2}&...&A_{n,2}\\...&...&...&...\\A_{1,n}&A_{2,n}&...&A_{n,n}\end{bmatrix}\begin{bmatrix}a_{1,1}&a_{2,1}&...&a_{n,1}\\a_{1,2}&a_{2,2}&...&a_{n,2}\\...&...&...&...\\a_{1,n}&a_{2,n}&...&a_{n,n}\end{bmatrix}=|A|E$  
+直观地：$\scriptsize A^{*}=\begin{bmatrix}\left |\begin{array}{}a_{2,2}&a_{2,3}&...&a_{2,n}\\a_{3,2}&a_{3,3}&...&a_{3,n}\\...&...&...&...\\a_{n,2}&a_{n,3}&...&a_{n,n}\\\end{array}\right|&\left |\begin{array}{}a_{1,2}&a_{1,3}&...&a_{1,n}\\a_{3,2}&a_{3,3}&...&a_{3,n}\\...&...&...&...\\a_{n,2}&a_{n,3}&...&a_{n,n}\\\end{array}\right|&...&(-1)^{n+1}\left |\begin{array}{}a_{1,2}&a_{1,3}&...&a_{1,n}\\a_{2,2}&a_{2,3}&...&a_{2,n}\\...&...&...&...\\a_{n-1,2}&a_{n-1,3}&...&a_{n-1,n}\\\end{array}\right|\\ \left |\begin{array}{}a_{2,1}&a_{2,3}&...&a_{2,n}\\a_{3,1}&a_{3,3}&...&a_{3,n}\\...&...&...&...\\a_{n,1}&a_{n,3}&...&a_{n,n}\\\end{array}\right|&\left |\begin{array}{}a_{1,1}&a_{1,3}&...&a_{1,n}\\a_{3,1}&a_{3,3}&...&a_{3,n}\\...&...&...&...\\a_{n,1}&a_{n,3}&...&a_{n,n}\\\end{array}\right|&...&(-1)^{n}\left |\begin{array}{}a_{1,1}&a_{1,3}&...&a_{1,n}\\a_{2,1}&a_{2,3}&...&a_{2,n}\\...&...&...&...\\a_{n-1,1}&a_{n-1,3}&...&a_{n-1,n}\\\end{array}\right|\\...&...&...&...\\(-1)^{n+1}\left|\begin{array}{}a_{2,1}&a_{2,2}&...&a_{2,n-1}\\a_{3,1}&a_{3,2}&...&a_{3,n-1}\\...&...&...&...\\a_{n,1}&a_{n,2}&...&a_{n,n-1 }\\\end{array}\right|&(-1)^{n}\left|\begin{array}{}a_{1,1}&a_{1,2}&...&a_{1,n-1}\\a_{3,1}&a_{3,2}&...&a_{3,n-1}\\...&...&...&...\\a_{n,1}&a_{n,2}&...&a_{n,n-1 }\\\end{array}\right|&...&\left|\begin{array}{}a_{1,1}&a_{1,2}&...&a_{1,n-1}\\a_{2,1}&a_{2,2}&...&a_{2,n-1}\\...&...&...&...\\a_{n-1,1}&a_{n-1,2}&...&a_{n-1,n-1 }\\\end{array}\right|\end{bmatrix}$  $\scriptsize B^{*}=\begin{bmatrix}\left |\begin{array}{}b_{2,2}&b_{2,3}&...&b_{2,n}\\b_{3,2}&b_{3,3}&...&b_{3,n}\\...&...&...&...\\b_{n,2}&b_{n,3}&...&b_{n,n}\\\end{array}\right|&\left |\begin{array}{}b_{1,2}&b_{1,3}&...&b_{1,n}\\b_{3,2}&b_{3,3}&...&b_{3,n}\\...&...&...&...\\b_{n,2}&b_{n,3}&...&b_{n,n}\\\end{array}\right|&...&(-1)^{n+1}\left |\begin{array}{}b_{1,2}&b_{1,3}&...&b_{1,n}\\b_{2,2}&b_{2,3}&...&b_{2,n}\\...&...&...&...\\b_{n-1,2}&b_{n-1,3}&...&b_{n-1,n}\\\end{array}\right|\\ \left |\begin{array}{}b_{2,1}&b_{2,3}&...&b_{2,n}\\b_{3,1}&b_{3,3}&...&b_{3,n}\\...&...&...&...\\b_{n,1}&b_{n,3}&...&b_{n,n}\\\end{array}\right|&\left |\begin{array}{}b_{1,1}&b_{1,3}&...&b_{1,n}\\b_{3,1}&b_{3,3}&...&b_{3,n}\\...&...&...&...\\b_{n,1}&b_{n,3}&...&b_{n,n}\\\end{array}\right|&...&(-1)^{n}\left |\begin{array}{}b_{1,1}&b_{1,3}&...&b_{1,n}\\b_{2,1}&b_{2,3}&...&b_{2,n}\\...&...&...&...\\b_{n-1,1}&b_{n-1,3}&...&b_{n-1,n}\\\end{array}\right|\\...&...&...&...\\(-1)^{n+1}\left|\begin{array}{}b_{2,1}&b_{2,2}&...&b_{2,n-1}\\b_{3,1}&b_{3,2}&...&b_{3,n-1}\\...&...&...&...\\b_{n,1}&b_{n,2}&...&b_{n,n-1 }\\\end{array}\right|&(-1)^{n}\left|\begin{array}{}b_{1,1}&b_{1,2}&...&b_{1,n-1}\\b_{3,1}&b_{3,2}&...&b_{3,n-1}\\...&...&...&...\\b_{n,1}&b_{n,2}&...&b_{n,n-1 }\\\end{array}\right|&...&\left|\begin{array}{}b_{1,1}&b_{1,2}&...&b_{1,n-1}\\b_{2,1}&b_{2,2}&...&b_{2,n-1}\\...&...&...&...\\b_{n-1,1}&b_{n-1,2}&...&b_{n-1,n-1 }\\\end{array}\right|\end{bmatrix}$ 
+![image.png](https://cdn.luogu.com.cn/upload/image_hosting/xgqzjcf6.webp)
+## 运算
+### 加法
+$\scriptsize\begin{cases}\begin{bmatrix}a_{1,1}&a_{1,2}&...&a_{1,m}\\a_{2,1}&a_{2,2}&...&a_{2,m}\\...&...&...&...\\a_{n,1}&a_{n,2}&...&a_{n,m}\end{bmatrix}+\begin{bmatrix}b_{1,1}&b_{1,2}&...&b_{1,m}\\b_{2,1}&b_{2,2}&...&b_{2,m}\\...&...&...&...\\b_{n,1}&b_{n,2}&...&b_{n,m}\end{bmatrix}=\begin{bmatrix}a_{1,1}+b_{1,1}&a_{1,2}+b_{1,2}&...&a_{1,m}+b_{1,m}\\a_{2,1}+b_{2,1}&a_{2,2}+b_{2,2}&...&a_{2,m}+b_{2,m}\\...&...&...&...\\a_{n,1}+b_{n,1}&a_{n,2}+b_{n,2}&...&a_{n,m}+b_{n,m}\end{bmatrix}，两矩阵同型\\else,undefined\end{cases}$
+### 减法
+$\scriptsize\begin{cases}\begin{bmatrix}a_{1,1}&a_{1,2}&...&a_{1,m}\\a_{2,1}&a_{2,2}&...&a_{2,m}\\...&...&...&...\\a_{n,1}&a_{n,2}&...&a_{n,m}\end{bmatrix}-\begin{bmatrix}b_{1,1}&b_{1,2}&...&b_{1,m}\\b_{2,1}&b_{2,2}&...&b_{2,m}\\...&...&...&...\\b_{n,1}&b_{n,2}&...&b_{n,m}\end{bmatrix}=\begin{bmatrix}a_{1,1}-b_{1,1}&a_{1,2}-b_{1,2}&...&a_{1,m}-b_{1,m}\\a_{2,1}-b_{2,1}&a_{2,2}-b_{2,2}&...&a_{2,m}-b_{2,m}\\...&...&...&...\\a_{n,1}-b_{n,1}&a_{n,2}-b_{n,2}&...&a_{n,m}-b_{n,m}\end{bmatrix}，两矩阵同型\\else,undefined\end{cases}$  
+性质1：矩阵加减法具有交换律和结合律
+### 数乘
+$\footnotesize\lambda\begin{bmatrix}a_{1,1}&a_{1,2}&...&a_{1,m}\\a_{2,1}&a_{2,2}&...&a_{2,m}\\...&...&...&...\\a_{n,1}&a_{n,2}&...&a_{n,m}\end{bmatrix}=\begin{bmatrix}\lambda a_{1,1}&\lambda a_{1,2}&...&\lambda a_{1,m}\\\lambda a_{2,1}&\lambda a_{2,2}&...&\lambda a_{2,m}\\...&...&...&...\\\lambda a_{n,1}&\lambda a_{n,2}&...&\lambda a_{n,m}\end{bmatrix}$  
+性质2：矩阵数乘具有结合律和分配律
+### 矩阵与矩阵相乘
+$\footnotesize\begin{cases}\begin{bmatrix}a_{1,1}&a_{1,2}&...&a_{1,m}\\a_{2,1}&a_{2,2}&...&a_{2,m}\\...&...&...&...\\a_{n,1}&a_{n,2}&...&a_{n,m}\end{bmatrix}\times\begin{bmatrix}b_{1,1}&b_{1,2}&...&b_{1,k}\\b_{2,1}&b_{2,2}&...&b_{2,k}\\...&...&...&...\\b_{m,1}&b_{m,2}&...&b_{m,k}\end{bmatrix}=C，第一个矩阵的列数等于第二个矩阵的行数\\else,undefined\end{cases}$  
+其中 $C=\begin{bmatrix}\sum_{i=1}^{m}a_{1,i}b_{i,1}&\sum_{i=1}^{m}a_{1,i}b_{i,2}&...&\sum_{i=1}^{m}a_{1,i}b_{i,k}\\\sum_{i=1}^{m}a_{2,i}b_{i,1}&\sum_{i=1}^{m}a_{2,i}b_{i,2}&...&\sum_{i=1}^{m}a_{2,i}b_{i,k}\\...&...&...&...\\\sum_{i=1}^{m}a_{n,i}b_{i,1}&\sum_{i=1}^{m}a_{n,i}b_{i,2}&...&\sum_{i=1}^{m}a_{n,i}b_{i,k}\end{bmatrix}$,行数为 $n$ ，列数为 $k$  
+性质3：矩阵乘法不具有交换律  
+性质4：矩阵 **A**$\times$**B** = **0** ,不能推出 **A** = **0** 或 **B** = **0**  
+性质5：**AB** = **AC** 且 **A** $\neq$ **0**不能推出 **B** = **C**  
+性质6：**A**$\times$**A**=**0**,不能推出 **A**=**0**  (性质4 **A** = **B**)  
+性质7：矩阵乘法具有结合律  
+性质8：矩阵乘法具有分配律  
+性质9：$\begin{bmatrix}a_{1,1}&a_{1,2}&...&a_{1,n}\end{bmatrix}\times\begin{bmatrix}b_{1,1}\\b_{2,1}\\...\\b_{n,1}\end{bmatrix}=\sum_{i=1}^{n}a_ib_i$
+### 转置
+$\footnotesize A=\begin{bmatrix}a_{1,1}&a_{1,2}&...&a_{1,m}\\a_{2,1}&a_{2,2}&...&a_{2,m}\\...&...&...&...\\a_{n,1}&a_{n,2}&...&a_{n,m}\end{bmatrix},A^{T}=\begin{bmatrix}a_{1,1}&a_{2,1}&...&a_{n,1}\\a_{1,2}&a_{2,2}&...&a_{n,2}\\...&...&...&...\\a_{1,m}&a_{2,m}&...&a_{n,m}\end{bmatrix}$  
+性质10：$(A^{T})^{T}=A$  
+性质11：$(A+B)^{T}=A^{T}+B^{T}$,证明：$\footnotesize\begin{bmatrix}a_{1,1}&a_{1,2}&...&a_{1,m}\\a_{2,1}&a_{2,2}&...&a_{2,m}\\...&...&...&...\\a_{n,1}&a_{n,2}&...&a_{n,m}\end{bmatrix}+\begin{bmatrix}b_{1,1}&b_{1,2}&...&b_{1,m}\\b_{2,1}&b_{2,2}&...&b_{2,m}\\...&...&...&...\\b_{n,1}&b_{n,2}&...&b_{n,m}\end{bmatrix}=\begin{bmatrix}a_{1,1}+b_{1,1}&a_{1,2}+b_{1,2}&...&a_{1,m}+b_{1,m}\\a_{2,1}+b_{2,1}&a_{2,2}+b_{2,2}&...&a_{2,m}+b_{2,m}\\...&...&...&...\\a_{n,1}+b_{n,1}&a_{n,2}+b_{n,2}&...&a_{n,m}+b_{n,m}\end{bmatrix},(\begin{bmatrix}a_{1,1}+b_{1,1}&a_{1,2}+b_{1,2}&...&a_{1,m}+b_{1,m}\\a_{2,1}+b_{2,1}&a_{2,2}+b_{2,2}&...&a_{2,m}+b_{2,m}\\...&...&...&...\\a_{n,1}+b_{n,1}&a_{n,2}+b_{n,2}&...&a_{n,m}+b_{n,m}\end{bmatrix})^T=\begin{bmatrix}a_{1,1}+b_{1,1}&a_{2,1}+b_{2,1}&...&a_{n,1}+b_{n,1}\\a_{1,2}+b_{1,2}&a_{2,2}+b_{2,2}&...&a_{n,2}+b_{n,2}\\...&...&...&...\\a_{1,m}+b_{1,m}&a_{2,m}+b_{2,m}&...&a_{n,m}+b_{n,m}\end{bmatrix}=\begin{bmatrix}a_{1,1}+b_{1,1}&a_{1,2}+b_{1,2}&...&a_{1,m}+b_{1,m}\\a_{2,1}+b_{2,1}&a_{2,2}+b_{2,2}&...&a_{2,m}+b_{2,m}\\...&...&...&...\\a_{n,1}+b_{n,1}&a_{n,2}+b_{n,2}&...&a_{n,m}+b_{n,m}\end{bmatrix}=\begin{bmatrix}a_{1,1}&a_{2,1}&...&a_{n,1}\\a_{1,2}&a_{2,2}&...&a_{n,2}\\...&...&...&...\\a_{1,m}&a_{2,m}&...&a_{n,m}\end{bmatrix}+\begin{bmatrix}b_{1,1}&b_{2,1}&...&b_{n,1}\\b_{1,2}&b_{2,2}&...&b_{n,2}\\...&...&...&...\\b_{1,m}&b_{2,m}&...&b_{n,m}\end{bmatrix}=A^{T}+B^{T}$  
+性质12：$(\lambda A)^{T}=\lambda A^{T}$,证明：$\footnotesize(\begin{bmatrix}\lambda a_{1,1}&\lambda a_{1,2}&...&\lambda a_{1,m}\\\lambda a_{2,1}&\lambda a_{2,2}&...&\lambda a_{2,m}\\...&...&...&...\\\lambda a_{n,1}&\lambda a_{n,2}&...&\lambda a_{n,m}\end{bmatrix})^{T}=\begin{bmatrix}\lambda a_{1,1}&\lambda a_{2,1}&...&\lambda a_{n,1}\\\lambda a_{1,2}&\lambda a_{2,2}&...&\lambda a_{n,2}\\...&...&...&...\\\lambda a_{1,m}&\lambda a_{2,m}&...&\lambda a_{n,m}\end{bmatrix}=\lambda \begin{bmatrix}a_{1,1}&a_{2,1}&...&a_{n,1}\\a_{1,2}&a_{2,2}&...&a_{n,2}\\...&...&...&...\\a_{1,m}&a_{2,m}&...&a_{n,m}\end{bmatrix}=\lambda A^{T}$  
+性质13:$(AB)^T=B^TA^T$,证明：记$\footnotesize A=\begin{bmatrix}a_{1,1}&a_{1,2}&...&a_{1,m}\\a_{2,1}&a_{2,2}&...&a_{2,m}\\...&...&...&...\\a_{n,1}&a_{n,2}&...&a_{n,m}\end{bmatrix},B=\begin{bmatrix}b_{1,1}&b_{1,2}&...&b_{1,k}\\b_{2,1}&b_{2,2}&...&b_{2,k}\\...&...&...&...\\b_{m,1}&b_{m,2}&...&b_{m,k}\end{bmatrix},A^T=\begin{bmatrix}a_{1,1}&a_{2,1}&...&a_{n,1}\\a_{1,2}&a_{2,2}&...&a_{n,2}\\...&...&...&...\\a_{1,m}&a_{2,m}&...&a_{n,m}\end{bmatrix},B^T=\begin{bmatrix}b_{1,1}&b_{2,1}&...&b_{m,1}\\b_{1,2}&b_{2,2}&...&b_{m,2}\\...&...&...&...\\b_{1,k}&b_{2,k}&...&b_{m,k}\end{bmatrix}，B^TA^T=\begin{bmatrix}\sum_{i=1}^m b_{i,1}a_{1,i}&\sum_{i=1}^m b_{i,1}a_{2,i}&...&\sum_{i=1}^m b_{i,1}a_{n,i}\\\sum_{i=1}^m b_{i,2}a_{1,i}&\sum_{i=1}^m b_{i,2}a_{2,i}&...&\sum_{i=1}^m b_{i,2}a_{n,i}\\...&...&...&...\\\sum_{i=1}^m b_{i,k}a_{1,i}&\sum_{i=1}^m b_{i,k}a_{2,i}&...&\sum_{i=1}^m b_{i,k}a_{n,i}\end{bmatrix}=\begin{bmatrix}\sum_{i=1}^m a_{1,i}b_{i,1}&\sum_{i=1}^m a_{2,i}b_{i,1}&...&\sum_{i=1}^m a_{n,i}b_{i,1}\\\sum_{i=1}^m a_{1,i}b_{i,2}&\sum_{i=1}^m a_{2,i}b_{i,2}&...&\sum_{i=1}^m a_{n,i}b_{i,2}\\...&...&...&...\\\sum_{i=1}^m a_{1,i}b_{i,k}&\sum_{i=1}^m a_{2,i}b_{i,k}&...&\sum_{i=1}^m a_{n,i}b_{i,k}\end{bmatrix}=(\begin{bmatrix}\sum_{i=1}^m a_{1,i}b_{i,1}&\sum_{i=1}^m a_{1,i}b_{i,2}&...&\sum_{i=1}^m a_{1,i}b_{i,k}\\\sum_{i=1}^m a_{2,i}b_{i,1}&\sum_{i=1}^m a_{2,i}b_{i,2}&...&\sum_{i=1}^m a_{2,i}b_{i,k}\\...&...&...&...\\\sum_{i=1}^m a_{n,i}b_{i,1}&\sum_{i=1}^m a_{n,i}b_{i,2}&...&\sum_{i=1}^m a_{n,i}b_{i,k}\end{bmatrix})^T=(AB)^T$  
+性质14：$N$ 是大于1的整数，$(A_1...A_N)^T=A_N^{T}...A_1^{T}$,证明：引理：性质13；对 $N$ 做第一数学归纳法：$N=2$,即为引理，已证，若 $N=K$ 成立，令 $A'=A_1...A_K$ ,结论变为：$A'A_{K+1}=A_{K+1}^{T}(A')^T$ ,由引理，$N=K+1$ 时成立,结论对任意 $N>1$ 的整数 $N$ 成立
+### 求逆
+在矩阵乘法中，若存在 $|A|$ 且 $|A|\neq 0$，则存在唯一矩阵 $B$, $s.t.AB=BA=E$,则 $A$ 可逆，$B$ 是 $A$ 的逆矩阵，即 $B=A^{-1}$  
+存在唯一 $B$ 的证明：  
+反证：若存在两个矩阵 $B,C$,使 $AB=E且AC=E$ ,则 $AB=AC$，$BAB=BAC$，$EB=EC$，$B=C$,矛盾!得证  
+性质15：若 A 可逆，A 的逆矩阵也可逆，$(A^{-1})^{-1}=A$
+证明：要证$(A^{-1})^{-1}=A$只需证$A^{-1}A=E$，得证  
+性质16：$\lambda\neq 0$ ,若 A 可逆，$\lambda A$ 也可逆，$(\lambda A)^{-1}=\frac{1}{\lambda}A^{-1}$
+证明：要证$(\lambda A)^{-1}=\frac{1}{\lambda}A^{-1}$只需证$\lambda A\frac{1}{\lambda}A^{-1}=AA^{-1}=E$，得证  
+性质17：若$A,B$为同阶矩阵且均可逆，则$AB$也可逆，且$(AB)^{-1}=B^{-1}A^{-1}$  
+要证$(AB)^{-1}=B^{-1}A^{-1}$，只需证 $ABB^{-1}A^{-1}=AA^{-1}=E$,得证  
+#### 求法$(|A|\neq 0)$
+注意到 $AA^{*}=A^{*}A=|A|\times E$  
+可得 $A\frac{A^{*}}{|A|}=E,A^{-1}=\frac{A^{*}}{|A|}$  
+二阶求逆：$A=\begin{bmatrix}a&b\\c&d\end{bmatrix},A^{*}=\begin{bmatrix}d&-b\\-c&a\end{bmatrix},A^{-1}=\frac{1}{ad-bc}A^{*}$
+### 分块
+给定$aa_{1}<aa_{2},..,<aa_{x}=n,bb_1<,...,<bb_y=m,aa_0=0,bb_0=0$定义一个$(ii,jj)$的子块**A**，使$A_{i,j}=a_{i+aa_{ii-1},j+bb_{jj-1}},i+aa_{ii-1}\in [aa_{ii-1}+1,aa_{ii}],j+bb_{jj-1}\in [bb_{jj-1}+1,bb_{jj}]$,也可记作$A_{ii,jj}$
+#### 加法
+两个矩阵 $A,B$ 按照同样的方式分块：
+$$A=\begin{bmatrix}A_{1,1}&A_{1,2}&...&A_{1,m}\\A_{2,1}&A_{2,2}&...&A_{2,m}\\...&...&...&...\\A_{n,1}&A_{n,2}&...&A_{n,m}\end{bmatrix},B=\begin{bmatrix}B_{1,1}&B_{1,2}&...&B_{1,m}\\B_{2,1}&B_{2,2}&...&B_{2,m}\\...&...&...&...\\B_{n,1}&B_{n,2}&...&B_{n,m}\end{bmatrix},A+B=\begin{bmatrix}A_{1,1}+B_{1,1}&A_{1,2}+B_{1,2}&...&A_{1,m}+B_{1,m}\\A_{2,1}+B_{2,1}&A_{2,2}+B_{2,2}&...&A_{2,m}+B_{2,m}\\...&...&...&...\\A_{n,1}+B_{n,1}&A_{n,2}+B_{n,2}&...&A_{n,m}+B_{n,m}\end{bmatrix}$$
+#### 数乘
+$\lambda\begin{bmatrix}A_{1,1}&A_{1,2}&...&A_{1,m}\\A_{2,1}&A_{2,2}&...&A_{2,m}\\...&...&...&...\\A_{n,1}&A_{n,2}&...&A_{n,m}\end{bmatrix}=\begin{bmatrix}\lambda A_{1,1}&\lambda A_{1,2}&...&\lambda A_{1,m}\\\lambda A_{2,1}&\lambda A_{2,2}&...&\lambda A_{2,m}\\...&...&...&...\\\lambda A_{n,1}&\lambda A_{n,2}&...&\lambda A_{n,m}\end{bmatrix}$
+#### 矩阵和矩阵相乘
+$\begin{bmatrix}A_{1,1}&A_{1,2}&...&A_{1,m}\\A_{2,1}&A_{2,2}&...&A_{2,m}\\...&...&...&...\\A_{n,1}&A_{n,2}&...&A_{n,m}\end{bmatrix}\times\begin{bmatrix}B_{1,1}&B_{1,2}&...&B_{1,k}\\B_{2,1}&B_{2,2}&...&B_{2,k}\\...&...&...&...\\B_{m,1}&B_{m,2}&...&B_{m,k}\end{bmatrix}=C$  
+其中 $C=\begin{bmatrix}\sum_{i=1}^{m}A_{1,i}B_{i,1}&\sum_{i=1}^{m}A_{1,i}B_{i,2}&...&\sum_{i=1}^{m}A_{1,i}B_{i,k}\\\sum_{i=1}^{m}A_{2,i}B_{i,1}&\sum_{i=1}^{m}A_{2,i}B_{i,2}&...&\sum_{i=1}^{m}A_{2,i}B_{i,k}\\...&...&...&...\\\sum_{i=1}^{m}A_{n,i}B_{i,1}&\sum_{i=1}^{m}A_{n,i}B_{i,2}&...&\sum_{i=1}^{m}A_{n,i}B_{i,k}\end{bmatrix}$
+#### 逆矩阵
+##### 主对角型
+当且仅当$A_{i,i}\neq O$,$A^{-1}$也满足：当且仅当$A^{-1}$ $_{i,i}\neq O$,且$A^{-1}$ $_{i,i}={A_{i,i}}^{-1}$
+##### 副对角型
+当且仅当$A_{i,n+1-i}\neq O$,$A^{-1}$也满足：当且仅当$A^{-1}$ $_{i,n+1-i}\neq O$,且$A^{-1}$ $_{n+1-i,i}={A_{i,n+1-i}}^{-1}$
+## 其他性质
+### 1
+$(A^{*})^{-1}=(A^{-1})^{*}$  
+证明： $LHS=(A^{*})^{-1}=(|A|A^{-1})^{-1}=(性质16+性质15) \frac 1 {|A|}A，RHS=|A^{-1}|(A^{-1})^{-1}=\frac 1 {|A|}A=LHS$
+### 2
+$(A^{T})^{*}=(A^{*})^{T}$(贡献)
+### 3
+$(A^{-1})^{T}=(A^{T})^{-1}$:即$(A^{-1})^T(A^{T})=(AA^{-1})^{T}=E$得证
